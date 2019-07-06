@@ -10,36 +10,33 @@ const Home = () => {
         <div>
             <h4 id='title'>Art by Samuel</h4>
             <Row>
-                <Col></Col>
                 <Col>
-                    {/* <ButtonToolbar> */}
-                        <Row id='dirButtons'>
-                        <Col>
-                            <Link to={{
-                                pathname: './gallery',
-                                state: {
-                                    availability: 'available'
-                                }
-                                }}>
-                                <Button variant='outline-primary'> Available </Button>
-                            </Link>
-                        </Col>
-                        <Col>
-                            <Link to={{
-                                    pathname: './gallery',
-                                    state: {
-                                        availability: 'unavailable'
-                                    }
-                                    }}>
-                                    <Button variant='outline-primary'> Unavailable </Button>
-                            </Link>                        
-                        </Col>
-                        </Row>
-                    {/* </ButtonToolbar> */}
-                    <br></br>
-                    <img src={imgURL} />
+                <Link 
+                    className='d-flex justify-content-end'
+                    to={{
+                    pathname: './gallery',
+                    state: {
+                        availability: 'available'
+                    }
+                    }}>
+                    <Button variant='outline-primary'> Available Work</Button>
+                </Link>
                 </Col>
-                <Col></Col>
+                <Col>
+                    <img className='mainImage' src={imgURL} />
+                </Col>
+                <Col>
+                <Link 
+                    className='d-flex justify-content-start'
+                    to={{
+                    pathname: './gallery',
+                    state: {
+                        availability: 'unavailable'
+                    }
+                    }}>
+                    <Button variant='outline-primary'> Unavailable Work </Button>
+                </Link>    
+                </Col>
             </Row>
         </div>
     );

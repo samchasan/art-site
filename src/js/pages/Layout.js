@@ -8,7 +8,7 @@ class Layout extends React.Component {
   render() {
     const { children  } = this.props;
     const containerStyle = {
-      marginTop: "60px"
+      paddingTop: "50px"
     };
     console.log("layout");
     return (

@@ -4,21 +4,110 @@ body {
     "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  -moz-osx-font-smoothing: grayscale; 
 }
+  
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
-img {
-  max-width: 800px;
-  max-height: 500px
+.mainImage {
+  max-width: 500px;
+  max-height: 800px
 }
 
+
+a {
+  text-decoration: none !important;
+}
+
+.pre-scrollable{
+  max-height: 500px
+
+}
+
+.on{
+  background: rgb(87, 165, 165);
+  border:none;
+  color: white
+}
+
+.off{
+background: none;
+border: none
+}
+
+
 #nav {
-  margin-left: 20px
+  margin-left: 20px;
+  color: gray;
+  text-shadow: 0px 0px 5px white;
+  transition: color 0.5s ease
+}
+
+#navBar img {
+  -webkit-filter: drop-shadow(0px 5px 5px #fff);  
+  filter: drop-shadow(0px 0px 5px #fff);
+}
+
+.horizontalGradient{
+  background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0));
+  width: 100%;
+  height: 60px;
+  position: fixed;
+}
+
+footer{
+  position: absolute;
+  bottom: 0;
+  padding-right: 25px;
+  width: 100%;
+  height: 60px;
+  z-index: -1
+}
+
+#navBar{
+  position: fixed;
+  /* height: 80px; */
+  /* vertical-align: top; */
+  width: 100%;
+  z-index: 1;
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0))
+}
+
+#logo{
+  max-width: 100px;
+  /* position: fixed; */
+}
+
+#miniText{
+  font-weight: 300;
+  font-variant-caps: all-small-caps;
+  color: gray;
+}
+
+#contactList{
+  list-style: none;
+  align-content: flex-start;
+  padding-inline-start: 0px;
+}
+
+#toggleButtons i {
+  color: lightgray;
+  width: 40px;
+  font-weight: 200;
+  font-size: 32px;
+  transition: color 0.5s ease
+}
+
+#toggleButtons i:hover {
+  color: #007bff ;
+}
+
+#nav:hover{
+ color: #007bff
 }
 
 #dirButtons, #title{
@@ -26,15 +115,27 @@ img {
 }
 
 #sideBtn {
-  text-align: left;
   display: block;
   font-size: 10px;
   font-weight: 500px;
   background: none;
   color: blue;
   border: none;
+  transition: background-color 0.5s ease
 }
 
 #sideBtn:hover{
   background: lightblue;
+}
+
+#galleryButton {
+  width: 150px;
+  margin: 20px;
+
+}
+
+#thumb{
+  position: absolute;
+  max-width: 30%
+  /* transform: scale(0.2); */
 }

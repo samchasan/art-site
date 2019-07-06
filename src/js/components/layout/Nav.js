@@ -14,15 +14,19 @@ export default class Nav extends React.Component {
   render() {
   
     return (
-      <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <nav id='navBar' className="navbar navbar-inverse navbar-fixed-top horizontalGradient" role="navigation">
          {/* <Row> */}
-          <Col md="auto">Logo goes here</Col>
-          <Col md="auto">
+          <Col md="auto"><img id='logo' src='/signature.png'/></Col>
+          <Col className='d-flex justify-content-end' md="auto">
               <NavLink id='nav' to="/"> Home </NavLink>
-              <NavLink id='nav' to="/contact"> Contact</NavLink>
-              <NavLink id='nav' to="/gallery"> Gallery </NavLink>
+              <NavLink id='nav' to="/contact" > Contact</NavLink>
+              <NavLink id='nav' to={{
+                                pathname: './gallery',
+                                state: {
+                                    availability: 'available'
+                                }
+                                }}> Gallery </NavLink>
           </Col>
-        {/* </Row> */}
       </nav>
     );
   }
