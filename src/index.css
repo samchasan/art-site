@@ -29,7 +29,7 @@ a {
 }
 
 .on{
-  background: rgb(87, 165, 165);
+  background: #61aeff;
   border:none;
   color: white
 }
@@ -39,11 +39,16 @@ background: none;
 border: none
 }
 
+.homePageText{
+  display: block;
+  color: #61aeff
+}
+
 
 #nav {
   margin-left: 20px;
   color: gray;
-  text-shadow: 0px 0px 5px white;
+  /* text-shadow: 1px 1px 3px darkslategray; */
   transition: color 0.5s ease
 }
 
@@ -52,12 +57,12 @@ border: none
   filter: drop-shadow(0px 0px 5px #fff);
 }
 
-.horizontalGradient{
+/* .horizontalGradient{
   background-image: linear-gradient(to right, rgba(255,255,255,0.8), rgba(255,255,255,0));
   width: 100%;
   height: 60px;
   position: fixed;
-}
+} */
 
 footer{
   position: absolute;
@@ -74,7 +79,7 @@ footer{
   /* vertical-align: top; */
   width: 100%;
   z-index: 1;
-  background-image: linear-gradient(to bottom, rgba(255,255,255,0.4), rgba(255,255,255,0))
+  background-image: linear-gradient(to bottom, rgba(255,255,255,0.8), rgba(255,255,255,0.4))
 }
 
 #logo{
@@ -116,16 +121,16 @@ footer{
 
 #sideBtn {
   display: block;
-  font-size: 10px;
+  font-size: 14px;
   font-weight: 500px;
   background: none;
-  color: blue;
+  color: #0065d1;
   border: none;
   transition: background-color 0.5s ease
 }
 
 #sideBtn:hover{
-  background: lightblue;
+  background: #d3e8ff;
 }
 
 #galleryButton {

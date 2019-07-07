@@ -3,6 +3,8 @@ import photos from '../components/photos'
 import {Row, Col, Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 
+import {pickRandom, floor} from 'mathjs'
+
 
 
 const imgURL = 'https://static1.squarespace.com/static/50931bf7e4b047ba54e41100/594c42dd8419c243fdb30611/594c430ac534a59822fea37e/1498170125953/show-8.jpeg?format=1000w'
@@ -45,7 +47,7 @@ class Gallery extends React.Component {
 
 componentDidUpdate(){
 
-  console.log('updated thumb URL', this.thumbURL)
+  //console.log('updated thumb URL', this.thumbURL)
 
   let currentView = this.state.view
 
@@ -53,10 +55,16 @@ componentDidUpdate(){
 
   if(this.state.view === 'available'){
     this.createGallery(availableArt)  
+    const val = pickRandom(availableArt)
+    this.setState({imgURL: '/art/available/'+val, currentImg: val })
+
     } 
    
    if(this.state.view === 'unavailable'){
     this.createGallery(unavailableArt)
+    const val = pickRandom(unavailableArt)
+    console.log(val)
+    this.setState({imgURL: '/art/unavailable/'+val, currentImg: val })
   }
   pastView = currentView
 }
@@ -67,18 +75,24 @@ componentDidMount(){
   const {availability} = this.props.location.state
   if(availability === 'available'){
     this.createGallery(availableArt)  
-    this.setState({view: 'available'})
+    const val = pickRandom(availableArt)
+    this.setState({view: 'available', 
+                  imgURL: '/art/available/'+val,
+                  currentImg: val})
     } 
    
    if(availability === 'unavailable'){
     this.createGallery(unavailableArt)
-    this.setState({view: 'unavailable'})
-
-  }
+    const val = pickRandom(unavailableArt)
+    this.setState({view: 'unavailable', 
+                  imgURL: '/art/available/'+val,
+                  currentImg: val})
+   }      
 }
 
 camelize(str)   {
 
+    //console.log(str)
     str = str.split(" ");
 
     for (var i = 0, x = str.length; i < x; i++) {
@@ -90,6 +104,9 @@ camelize(str)   {
 
 removeFiles(e, titles){
   e.forEach((piece, i) =>{
+    
+    // console.log(piece)
+
     let newString
     if(piece.includes('.jpeg')) {
     newString = piece.replace('.jpeg','')
@@ -102,7 +119,7 @@ removeFiles(e, titles){
         } 
         const camelString = this.camelize(newString)  
   
-        console.log(camelString)
+        //console.log(camelString)
       
         titles[i] = camelString
       
@@ -130,7 +147,7 @@ createGallery(e) {
 
   this.removeFiles(e, titles)
    
-  console.log(e)
+  //console.log(e)
   listItems = e.map((piece, i) =>
     <Button type="button" id='sideBtn' 
             className='btn btn-outline-primary btn-block btn-sm' 
@@ -144,7 +161,7 @@ createGallery(e) {
 
 createThumbs(e) {
 e.forEach(piece => {
-  console.log('making thumb of', piece)
+  //console.log('making thumb of', piece)
 })
 }
 
@@ -163,7 +180,7 @@ changeLink(e){
 
 showThumb(img){
   const newURL = '/art/' + this.state.view + '/' + img
-  console.log(newURL)
+  //console.log(newURL)
   this.setState({thumbURL: newURL})
   thumbURL = newURL
 }
@@ -171,14 +188,16 @@ showThumb(img){
 move(direction){
 
   console.log('direction', direction)
+  console.log('state', this.state)
+
 
   const img = this.removeFile(this.state.currentImg)
   if(direction === 'back'){
     if (this.state.view === 'available'){
       availableArt.forEach((piece, i) => {
         if(piece.includes(img)){
-            // console.log('true')
-            console.log(i, availableArt[i-1])
+            //console.log('true')
+            //console.log(i, availableArt[i-1])
             if (i === 0){ i = availableArt.length}
             const newURL = {target: {name: availableArt[i-1]}}
             this.changeLink(newURL)
@@ -188,8 +207,8 @@ move(direction){
     if (this.state.view === 'unavailable'){
       unavailableArt.forEach((piece, i) => {
         if(piece.includes(img)){
-            // console.log('true')
-            console.log(i, unavailableArt[i-1])
+            // //console.log('true')
+            //console.log(i, unavailableArt[i-1])
             if (i === 0){ i = unavailableArt.length}
             const newURL = {target: {name: unavailableArt[i-1]}}
             this.changeLink(newURL)
@@ -203,8 +222,8 @@ move(direction){
  if (this.state.view === 'available'){
       availableArt.forEach((piece, i) => {
         if(piece.includes(img)){
-            // console.log('true')
-            console.log(i, availableArt[i+1])
+            // //console.log('true')
+            //console.log(i, availableArt[i+1])
             if (i === availableArt.length -1){ i = -1}
             const newURL = {target: {name: availableArt[i+1]}}
             this.changeLink(newURL)
@@ -214,8 +233,8 @@ move(direction){
     if (this.state.view === 'unavailable'){
       unavailableArt.forEach((piece, i) => {
         if(piece.includes(img)){
-            // console.log('true')
-            console.log(i, unavailableArt[i+1])
+            // //console.log('true')
+            //console.log(i, unavailableArt[i+1])
             if (i === unavailableArt.length-1 ){ i = -1}
             const newURL = {target: {name: unavailableArt[i+1]}}
             this.changeLink(newURL)
@@ -227,7 +246,7 @@ move(direction){
 
 render (){
 
-  // console.log(this.state)
+  // //console.log(this.state)
 
   let availableIsOn
   let unavailableIsOn
