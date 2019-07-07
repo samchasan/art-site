@@ -1,0 +1,77 @@
+const path = require('path');
+const fs = require('fs');
+
+let folderList = [];
+var masterList = {};
+
+// const archive = fs.readFile(path.resolve(__dirname, '/art'), console.log('done'));
+
+const archive2=require.main.filename.replace('generateFileList.js','art')
+
+console.log(archive2)
+
+loadDir(archive2, list =>{
+  console.log(list)
+  masterList = []
+  loadFiles(folderList, files => {
+    // console.log(files);
+      writeFiles(masterList, msg => {
+      console.log(msg)
+    })
+  })
+})
+
+function loadDir(path,callback){
+  // console.log(path)
+  fs.readdir(path, function(err, folders) {
+
+    // console.log(folders)
+
+      for(let i = 0; i < folders.length; i++){
+        if (folders[i] != '.DS_Store'){
+        const folder = folders[i];
+        folderList.push(folder);
+      }
+    }
+    callback(folderList)
+  })
+}
+
+function loadFiles(pathList, callback){
+  for (let name of pathList){
+      const fullPath = path.join(archive2, name);
+      // console.log(fullPath)
+      fs.readdir(fullPath, function(err, items) {
+        var result = '[';
+
+        for(let i = 0; i < items.length; i++){
+
+          if(items[i] != '.DS_Store'){
+          const file = items[i];
+          result = result + "'" + file + "',";
+          }
+        }
+          result = result + ']';
+          masterList[name] = result;
+          callback(masterList)
+        })
+      }
+  }
+
+function writeFiles(arr,callback){
+
+  const obj = Object.assign({}, arr)
+
+  console.log('obj', obj)
+
+  const fileToWrite = path.join(__dirname, 'photos.js');
+  const contentToWrite = "const photos = " + JSON.stringify(obj)
+
+  fs.writeFile(fileToWrite, contentToWrite, function(err) {
+    if(err) {
+    callback("err")
+    }
+    else
+    callback("The file was saved!")
+  });
+}
