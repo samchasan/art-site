@@ -5,7 +5,7 @@
   "dependencies": {
     "fs": "0.0.1-security",
     "gh": "^1.17.5",
-    "mathjs": "^6.0.3",
+    "mathjs": "^7.5.1",
     "pages": "0.0.16",
     "path": "^0.12.7",
     "react": "^16.8.6",
